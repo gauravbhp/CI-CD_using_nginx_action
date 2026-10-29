@@ -1,0 +1,32 @@
+
+name: This is test CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check the code
+        uses: actions/checkout@v4
+
+      - name: Run some commands on Linux
+        run: |
+          echo "Hello Gaurav Singh"
+          uname -a
+
+      - name: nginx test
+        run: |
+          sudo apt update
+          sudo apt install nginx -y
+          sudo systemctl enable --now nginx
+          sudo systemctl status nginx
+
+      - name: copy site to nginx directory
+        run: |
+          sudo cp -r ./*.html ./assets ./images /var/www/html/
+          curl  http://localhost/ | 
