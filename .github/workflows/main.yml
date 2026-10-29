@@ -29,4 +29,4 @@ jobs:
       - name: copy site to nginx directory
         run: |
           sudo cp -r ./*.html ./assets ./images /var/www/html/
-          curl  http://localhost/ | 
+          curl --fail --silent --show-error http://localhost/ | grep -q "ZeroFour by HTML5 UP"
